@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+
+import Confetti from "react-confetti";
 
 import Head from "next/head";
 import Scoreboard from "../components/Scoreboard";
@@ -10,22 +12,34 @@ import Contest from "../components/Contest";
 const Home = () => {
   const hands = ["rock", "paper", "scissors"];
 
+  const confettiRef = useRef(null);
+
   const [score, setScore] = useState(0);
   const [result, setResult] = useState(null);
 
   const [computerHand, setComputerHand] = useState(null);
   const [userHand, setUserHand] = useState(null);
 
+  const [height, setHeight] = useState(null);
+  const [width, setWidth] = useState(null);
+  const [show, setShow] = useState(false);
+
   useEffect(() => {
     if (result === 0) {
       setResult("YOU LOSE!");
     } else if (result === 1) {
       setResult("YOU WIN!");
+      setShow(true);
       setScore((prevScore) => prevScore + 1);
     } else if (result === 5) {
       setResult("It's a tie!");
     }
   }, [result]);
+
+  useEffect(() => {
+    setHeight(confettiRef.current.clientHeight);
+    setWidth(confettiRef.current.clientWidth);
+  }, []);
 
   const userHandSelection = (hand) => {
     const computerSelection = hands[Math.floor(Math.random() * hands.length)];
@@ -43,7 +57,20 @@ const Home = () => {
         <link rel="shortcut icon" href="favicon.jpg" type="image/x-icon" />
       </Head>
 
-      <div className="main">
+      {show && (
+        <Confetti
+          width={width}
+          height={height}
+          recycle={false}
+          numberOfPieces={1000}
+          onConfettiComplete={() => {
+            setShow(false);
+          }}
+          tweenDuration={100}
+        />
+      )}
+
+      <div className="main" ref={confettiRef}>
         <Scoreboard score={score} />
         {result ? (
           <Contest
