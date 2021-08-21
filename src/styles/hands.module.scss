@@ -1,0 +1,32 @@
+.hands {
+  width: 476px;
+  height: 430px;
+  background-image: url("/images/triangle.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 100px;
+
+  & > * {
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+      transform: translateY(-10px);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+
+  .scissor {
+    margin-left: 20px;
+  }
+
+  .paper {
+    margin-right: 20px;
+  }
+}
