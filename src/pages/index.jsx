@@ -40,6 +40,7 @@ const Home = () => {
     <div>
       <Head>
         <title>Rock Paper Scissor</title>
+        <link rel="shortcut icon" href="favicon.jpg" type="image/x-icon" />
       </Head>
 
       <div className="main">
