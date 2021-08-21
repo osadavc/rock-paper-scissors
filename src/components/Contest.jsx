@@ -1,4 +1,5 @@
 import styles from "../styles/contest.module.scss";
+import { capitalizeFirstLetter } from "../utils.js";
 
 const Contest = ({ computerHand, userHand, setResult, result }) => {
   return (
@@ -6,7 +7,7 @@ const Contest = ({ computerHand, userHand, setResult, result }) => {
       <div>
         <h1>YOU PICKED</h1>
         <div className={styles.handImageContainer}>
-          <img src={`./images/${userHand}.png`} />
+          <img src={`./images/${capitalizeFirstLetter(userHand)}.png`} />
         </div>
       </div>
 
@@ -28,7 +29,7 @@ const Contest = ({ computerHand, userHand, setResult, result }) => {
       <div>
         <h1>THE HOUSE PICKED</h1>
         <div className={styles.handImageContainer}>
-          <img src={`./images/${computerHand}.png`} />
+          <img src={`./images/${capitalizeFirstLetter(computerHand)}.png`} />
         </div>
       </div>
     </div>

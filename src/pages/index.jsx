@@ -4,7 +4,7 @@ import Head from "next/head";
 import Scoreboard from "../components/Scoreboard";
 import Hands from "../components/Hands";
 
-import { referee } from "../referee.js";
+import { referee } from "../utils";
 import Contest from "../components/Contest";
 
 const Home = () => {
